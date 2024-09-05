@@ -2,12 +2,14 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const movie = require('../models/movie');
+const mongoose = require('mongoose');
 
 // Adicionar um filme à lista de favoritos
 router.post('/favorites', async (req, res) => {
   const { userId, movieId } = req.body;
 
   try {
+
     // Encontre o usuário
     const user = await User.findById(userId);
 

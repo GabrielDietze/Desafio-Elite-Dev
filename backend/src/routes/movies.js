@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+const LANGUAGE_PARAM = 'pt-BR';
 
 router.get('/search/:query', async (req, res) => {
   const query = req.params.query;
@@ -13,7 +14,8 @@ router.get('/search/:query', async (req, res) => {
     const response = await axios.get(`${TMDB_BASE_URL}/search/movie`, {
       params: {
         api_key: TMDB_API_KEY,
-        query: query
+        query: query,
+        language: LANGUAGE_PARAM
       }
     });
     res.json(response.data);
@@ -27,7 +29,8 @@ router.get('/movie/:id', async (req, res) => {
     try {
       const response = await axios.get(`${TMDB_BASE_URL}/movie/${movieId}`, {
         params: {
-          api_key: TMDB_API_KEY
+          api_key: TMDB_API_KEY,
+          language: LANGUAGE_PARAM
         }
       });
       res.json(response.data);

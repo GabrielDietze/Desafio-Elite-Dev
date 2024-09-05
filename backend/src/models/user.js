@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  favoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }], // Referência para o modelo Movie
+  favoriteMovies: [{ type: String, ref: 'Movie' }], // Referência para o modelo Movie
   sharedLinkToken: { type: String },
   sharedLinkExpires: { type: Date },
 });

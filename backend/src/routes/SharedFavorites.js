@@ -4,7 +4,7 @@ const User = require('../models/user');
 const crypto = require('crypto');
 
 // Gera um link compartilhável com prazo de validade
-router.post('/share-favorites/:userId', async (req, res) => {
+router.post('/favorites/shared/:userId', async (req, res) => {
     console.log('rota share-favorites');
 
   const { userId } = req.params;

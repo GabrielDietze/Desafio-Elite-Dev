@@ -6,6 +6,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true, // Converte o e-mail para minúsculas
+    trim: true,      // Remove espaços em branco ao redor do e-mail
+  },
   password: {
     type: String,
     required: true,

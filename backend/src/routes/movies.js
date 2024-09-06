@@ -26,22 +26,28 @@ router.get('/search/:query', async (req, res) => {
   }
 });
 
-//buscar detalhes do filme
-router.get('/movie/:id', async (req, res) => {
-    const movieId = req.params.id;
-    try {
-      const response = await axios.get(`${TMDB_BASE_URL}/movie/${movieId}`, {
-        params: {
-          api_key: TMDB_API_KEY,
-          language: LANGUAGE_PARAM,
-          with_networks: 213 // Netflix
-        }
+// Rota para buscar detalhes de filme ou série
+router.get('/:type/:id', async (req, res) => {
+  const { type, id } = req.params;
+  
+  // Validação do tipo
+  if (type !== 'movie' && type !== 'tv') {
+      return res.status(400).json({ error: 'Tipo inválido. Use "movie" ou "tv".' });
+  }
+
+  try {
+      const response = await axios.get(`${TMDB_BASE_URL}/${type}/${id}`, {
+          params: {
+              api_key: TMDB_API_KEY,
+              language: LANGUAGE_PARAM,
+              with_networks: type === 'movie' ? 213 : undefined // Adiciona com_networks apenas para filmes
+          }
       });
       res.json(response.data);
-    } catch (err) {
-      res.status(500).json({ error: 'Erro ao buscar detalhes do filme' });
-    }
-  });  
+  } catch (err) {
+      res.status(500).json({ error: 'Erro ao buscar detalhes' });
+  }
+});
 
 
   //buscar filmes por categoria

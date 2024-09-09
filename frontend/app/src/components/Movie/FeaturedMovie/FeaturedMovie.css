@@ -1,0 +1,144 @@
+.featured{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-top: 4.375rem;
+    padding-bottom: 8rem;
+}
+
+.featured-name{
+    font-size:3rem;
+    font-weight: bold;
+}
+
+.featured-info{
+    font-size:1.25rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.featured-points, .featured-year, .featured-seasons{
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.featured-points{
+    color: yellow; 
+}
+
+.featured-description{
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #999;
+    max-width: 40%;
+    display: -webkit-box; /* Necessário para aplicar a limitação de linhas */
+    -webkit-line-clamp: 4; /* Limita o número de linhas */
+    -webkit-box-orient: vertical; /* Define a orientação da caixa para vertical */
+    overflow: hidden; /* Oculta o texto que ultrapassa o limite */
+    text-overflow: ellipsis; /* Adiciona reticências ao texto que não cabe */
+    line-height: 1.5; /* Define a altura da linha, ajuste conforme necessário */
+    max-height: calc(1.5em * 4); /* Calcula a altura máxima com base na altura da linha */   
+}
+
+.featured-buttons{
+    margin-top: 1rem;
+}
+
+.featured-watchbutton, .featured-FavoriteButton{
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.7rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    margin-right: 1.25rem;
+    opacity: 1;
+    transition: all ease 0.2s;
+}
+
+.featured-watchbutton:hover, .featured-FavoriteButton:hover{
+    opacity: 0.7;
+}
+
+.featured-watchbutton{
+    background-color: white;
+    color: black;
+}
+
+.featured-FavoriteButton{
+    background-color: #333;
+    color: white;
+}
+
+.featured-genres{
+    margin-top: 0.8rem;
+    font-size: 1.125rem;
+    color: #999;
+}
+
+@media (max-width: 760px){
+    .featured{
+        height: 90vh;
+    }
+    .featured-name{
+        font-size: 2rem;
+    }
+    .featured-info{
+        font-size: 1rem;
+    }
+    .featured-description{
+        font-size: 0.9rem;
+        max-width: 100%;
+        margin-right: 2rem;
+        -webkit-line-clamp: 3;
+    }
+    .featured-buttons{
+        margin-top: 0.5rem;
+    }
+    .featured-watchbutton, .featured-FavoriteButton{
+        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+        margin-right: 0.6rem;
+    }
+    .featured-genres{
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width:500px){
+    .featured-name{
+        font-size: 1.5rem;
+    }
+    .featured-info{
+        font-size: 0.9rem;
+    }
+    .featured-description{
+        font-size: 0.8rem;
+    }
+    .featured-watchbutton, .featured-FavoriteButton{
+        font-size: 0.8rem;
+    }
+    .featured-genres{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px){
+    .featured-name{
+        font-size: 1.2rem;
+    }
+    .featured-info{
+        font-size: 0.8rem;
+    }
+    .featured-description{
+        font-size: 0.7rem;
+    }
+    .featured-watchbutton, .featured-FavoriteButton{
+        font-size: 0.7rem;
+    }
+    .featured-genres{
+        font-size: 0.7rem;
+    }
+}

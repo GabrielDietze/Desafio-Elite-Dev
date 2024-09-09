@@ -1,0 +1,22 @@
+
+.movie {
+    width: 100%; /* Ajuste conforme necessário */
+    height:calc(100VH - 4rem) ; /* Ajuste conforme necessário */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-top: 4.375rem;
+    padding-bottom: 8rem;
+}
+
+.header-movie-detail{
+    margin-bottom: 4rem;
+}
+
+.movie-description{
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #999;
+    max-width: 40%;
+}

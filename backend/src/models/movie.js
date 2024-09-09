@@ -36,6 +36,10 @@ const movieSchema = new mongoose.Schema({
   duration: {
     type: Number, // Duração em minutos
     required: false
+  },
+  posterPath: {
+    type: String,
+    required: false
   }
 });
 

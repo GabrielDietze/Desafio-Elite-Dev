@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-
 *{
     box-sizing: border-box;
 }
@@ -14,4 +13,20 @@ body {
 
 html{
     font-size: 150%;
+}
+
+@media (max-width: 1400px) {
+    html {
+        font-size: 120%;
+    }
+}
+@media (max-width: 768px) {
+    html {
+        font-size: 90%;
+    }
+}
+@media (max-width: 480px) {
+    html {
+        font-size: 80%;
+    }
 }

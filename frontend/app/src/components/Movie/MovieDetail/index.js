@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './MovieDetail.css';
 import Header from '../../header';
 import { useParams } from 'react-router-dom';
+import BackButton from '../../backbutton/BackButton.js';
 
 const MovieDetail = () => {
     const { type, id } = useParams(); // Pega o parâmetro type e id da URL
@@ -25,17 +26,24 @@ const MovieDetail = () => {
 
     return (
         <>
+            <div className='container-movie-detail'>
             <div className='header-movie-detail'>
                 <Header />
             </div>
+            
             <section className="movie" style={{
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundImage: `linear-gradient(to right, #111 30%, transparent 70%), linear-gradient(to top, rgba(0, 0, 0, 0.7) 10%, transparent 90%), url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
             }}>
+                <div className='back-button'>
+                <BackButton />
+                </div>
                 <div className="featured-name"> {item.title || item.original_name} </div>
                 <div className="featured-info">
-                    <div className="featured-points"> Nota: {item.vote_average.toFixed(1)} </div>
+                <div className="featured-points">
+                     Nota: {item.vote_average ? item.vote_average.toFixed(1) : 'N/A'}
+                    </div>
                     <div className="featured-year">
                         {new Date(item.release_date || item.first_air_date).getFullYear()}
                     </div>
@@ -58,6 +66,7 @@ const MovieDetail = () => {
                     </div>
                 )}
             </section>
+            </div>
         </>
     );
 };

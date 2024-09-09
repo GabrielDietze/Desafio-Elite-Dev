@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from 'react-router-dom';
 import "./movieRow.css";
 import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 
@@ -6,6 +7,10 @@ export default function MovieRow({ title, items }) {
     const [scrollX, setScrollX] = useState(0);
     const itemWidthRem = 9.375; // 150px em rem
 
+    const typeofItem = (item) => {
+        // Verifica se o item é uma série ou um filme
+        return item.hasOwnProperty('number_of_seasons') ? 'tv' : 'movie';
+    }
     const handleLeftArrow = () => {
        let valorScroll = scrollX + Math.round(window.innerWidth / 2);
        if(valorScroll > 0){
@@ -41,7 +46,9 @@ export default function MovieRow({ title, items }) {
             }>
             {items.results.length > 0 && items.results.map((item, key) => (
                 <div className="movieRow-item" key={key}>
+                     <Link to={`/${typeofItem(item)}/${item.id}`}>
                     <img src={`https://image.tmdb.org/t/p/w300${item.poster_path}`} alt={item.original_title} />
+                    </Link>
                 </div>
             ))}
             </div> 

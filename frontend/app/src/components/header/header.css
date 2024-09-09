@@ -48,6 +48,14 @@ header.black{
     color: inherit;
 }
 
+.nav-menu li a:hover{
+    opacity: 0.7;
+}
+
+.nav-menu a.inactive {
+    opacity: 0.7;
+  }
+
 .nav-menu li:last-child {
     margin-right: 0;
 }

@@ -4,6 +4,26 @@ const User = require('../models/user');
 const movie = require('../models/movie');
 const mongoose = require('mongoose');
 
+
+// Buscar a lista de favoritos de um usuário
+router.get('/favorites/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Encontre o usuário
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    // Retorne apenas a lista de IDs dos favoritos
+    res.json({ favoriteMovies: user.favoriteMovies });
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar favoritos' });
+  }
+});
+
 // Adicionar um filme à lista de favoritos
 router.post('/favorites', async (req, res) => {
   const { userId, movieId } = req.body;

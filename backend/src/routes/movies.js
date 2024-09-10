@@ -26,6 +26,32 @@ router.get('/search/:query', async (req, res) => {
   }
 });
 
+// Rota para buscar filmes ou séries por categoria
+router.get('/discover/:mediaType', async (req, res) => {
+  const mediaType = req.params.mediaType; // 'movie' ou 'tv'
+  const genreId = req.query.genreId; // ID do gênero
+
+  if (!['movie', 'tv'].includes(mediaType)) {
+    return res.status(400).send('Tipo de mídia inválido');
+  }
+
+  try {
+    const response = await axios.get(`${TMDB_BASE_URL}/discover/${mediaType}`, {
+      params: {
+        api_key: TMDB_API_KEY,
+        language: LANGUAGE_PARAM,
+        with_genres:genreId,
+        with_networks: 213 // Netflix 
+      }
+    });
+    
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Erro ao buscar dados');
+  }
+});
+
 // Rota para buscar detalhes de filme ou série
 router.get('/:type/:id', async (req, res) => {
   const { type, id } = req.params;

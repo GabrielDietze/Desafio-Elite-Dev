@@ -1,0 +1,86 @@
+
+.edit-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #141414; 
+}
+
+.header-edit-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    width: 100%;
+
+}
+
+.content-edit-profile {
+    background-color: #222; 
+    padding: 2.5rem; 
+    border-radius: 0.5rem; 
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.7); /* Sombra ajustada */
+    width: 100%;
+    max-width: 25rem; 
+}
+
+.back-button {
+    display: inline-block;
+}
+
+.header-edit-profile h1 {
+    color: #fff;
+    font-size: 1.5rem; 
+    text-align: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.header-edit-profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem; 
+}
+
+.edit-profile-form .form-group {
+    margin-bottom: 1.25rem; 
+}
+
+.edit-profile-form label {
+    display: block;
+    margin-bottom: 0.5rem; 
+    color: #b3b3b3; 
+    font-size: 0.875rem;
+}
+
+.edit-profile-form input {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: #333;
+    border: none;
+    border-radius: 0.25rem; 
+    color: #fff;
+    font-size: 0.875rem;
+}
+
+.edit-profile-form input:focus {
+    outline: none;
+    background-color: #444;
+}
+
+.save-button {
+    width: 100%;
+    padding: 0.875rem;
+    background-color: #e50914; 
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem; 
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.25rem; 
+}
+
+.save-button:hover {
+    background-color: #f3202a;
+}

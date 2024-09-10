@@ -1,93 +1,89 @@
+.login-container {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75); 
+}
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #141414;
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.75);
-  }
-  
-  .login-box {
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 2rem; 
-    border-radius: 1rem; 
+.login-box {
+    background-color: rgba(27, 27, 27, 0.85);
+    padding: 2rem;
+    border-radius: 1rem;
     text-align: center;
-    max-width: 25rem; 
+    max-width: 25rem;
     width: 100%;
-    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5); 
-  }
-  
-  .login-box img{
-    margin-bottom: 2rem; 
-  }
-  
-  form input {
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+}
+
+/* Ajuste na imagem dentro da caixa de login */
+.login-box img {
+    margin-bottom: 2rem;
+}
+
+/* Estilos para os campos do formulário */
+form input {
     background-color: #333;
     border: none;
-    border-radius: 0.5rem; 
+    border-radius: 0.5rem;
     color: #fff;
-    font-size: 1rem; 
-    padding: 1rem; 
-    margin: 0.5rem 0; 
+    font-size: 1rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
     width: 100%;
-  }
-  
-  form input::placeholder {
+}
+
+/* Placeholder dos campos do formulário */
+form input::placeholder {
     color: #8c8c8c;
-  }
-  
-  .submit-btn {
+}
+
+/* Estilo do botão de envio */
+.submit-btn {
     background-color: #e50914;
     border: none;
     color: white;
-    padding: 1rem; 
-    font-size: 1rem; 
-    border-radius: 0.5rem; 
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     width: 100%;
-    margin-top: 1.5rem; 
+    margin-top: 1.5rem;
     font-weight: bold;
-  }
-  
-  .submit-btn:hover {
+}
+
+/* Estilo do botão de envio ao passar o mouse */
+.submit-btn:hover {
     background-color: #f6121d;
-  }
-  
-  .toggle {
+}
+
+/* Estilo para o texto de alternância */
+.toggle {
     color: #8c8c8c;
-    margin-top: 1rem; 
+    margin-top: 1rem;
     cursor: pointer;
-    font-size: 0.9rem; 
-  }
-  
-  .toggle:hover {
+    font-size: 0.9rem;
+}
+
+/* Estilo para o texto de alternância ao passar o mouse */
+.toggle:hover {
     text-decoration: underline;
-  }
-  
-  @media (max-width: 1024px) {
+}
+
+/* Estilos responsivos */
+@media (max-width: 1024px) {
     .login-box {
-      padding: 1.5rem; 
-      width: 80%;
+        padding: 1.5rem;
+        width: 80%;
     }
     .login-box img {
-      width: 70%;
+        width: 70%;
     }
-  }
+}
 
-  @media (max-width: 768px) {
+@media (max-width: 768px) {
     .login-box {
-      padding: 1rem; 
+        padding: 1rem;
     }
-  }
+}

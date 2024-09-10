@@ -115,9 +115,7 @@ async function getMovieInfo(movieId, type) {
 
     return (
        <div className='home-page'>
-        <header>
-        {Header(blackHeader)}
-        </header>
+         <Header black={blackHeader}/> 
 
         {featuredData && <FeaturedMovie item={featuredData} />}
 

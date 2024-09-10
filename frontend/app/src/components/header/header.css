@@ -60,13 +60,78 @@ header.black{
     margin-right: 0;
 }
 
-.header-user{
+/* Menu suspenso */
+.header-user {
     height: 2.5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header-user img {
+    height: 100%;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+
+.user-menu-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer; /* Adiciona o cursor pointer ao ícone */
+    margin-left: 0.5rem; /* Espaço entre o ícone e a seta */
+}
+
+.user-menu-icon svg {
+    color: #fff; /* Cor do ícone */
+    font-size: 2rem; /* Tamanho do ícone */
+}
+
+.user-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 110%; /* Posiciona abaixo do ícone de perfil */
+    right: 0;
+    background-color: #333; /* Cor de fundo escura */
+    border: 1px solid #444; /* Borda mais escura */
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+    z-index: 1000;
+    min-width: 8rem; 
+    padding: 0.5rem 0;
+    opacity: 0; /* Inicialmente escondido */
+    visibility: hidden; /* Inicialmente escondido */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Transição suave */
+}
+
+.user-menu.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.user-menu-item {
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #fff; /* Cor do texto branca */
+    display: block;
+    border-bottom: 1px solid #444; /* Borda inferior mais escura */
+    cursor: pointer; /* Cursor pointer */
+    text-align: center; /* Alinha o texto ao centro horizontalmente */
+}
+
+.user-menu-item:hover {
+    background-color: #555; /* Cor de fundo ao passar o mouse */
+}
+
+.user-menu-item:last-child {
+    border-bottom: none;
 }
 
 .header-user img{
     height: 100%;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .header-search {
@@ -156,8 +221,4 @@ header.black{
     }
   }
 
-  @media (max-width: 500px) {
-    .header-user{
-        display: none;
-    }
-}
+

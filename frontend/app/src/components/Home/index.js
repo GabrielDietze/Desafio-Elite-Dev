@@ -3,12 +3,18 @@ import './home.css';
 import MovieRow from '../Movie/MovieRow';
 import FeaturedMovie from '../Movie/FeaturedMovie';
 import Header from '../header';
+import api from '../../services/api';
 
-async function basicFetch(endpoint) {
-    const API_URL = 'https://api.themoviedb.org/3';
-    const request = await fetch(`${API_URL}${endpoint}`);
-    const json = await request.json();
-    return json;
+async function basicFetch(endpoint, genre = '') {
+    try {
+        const url = genre ? `${endpoint}?genreId=${genre}` : endpoint;
+        const response = await api.get(url);
+        console.log(`Fetch para ${url}:`, response.data); // Log para depuração
+        return response.data;
+    } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+        throw error;
+    }
 }
 
 export default function Home() {
@@ -16,90 +22,94 @@ export default function Home() {
     const [featuredData, setFeaturedData] = useState(null);
     const [blackHeader, setBlackHeader] = useState(false);
 
-    //vou colocar essa funcao integrada com o back depois, fiz isso pra teste
-async function getMovieInfo(movieId, type) {
-    let info = {};
+    async function getMovieInfo(movieId, type) {
+        let info = {};
 
-    if (movieId) {
-        switch (type) {
-            case 'movie':
-                info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18`);
-                break;
-            case 'tv':
-                info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18`);
-                break;
-            default:
-                info = null;
-                break;
+        if (movieId) {
+            try {
+                switch (type) {
+                    case 'movie':
+                        info = await basicFetch(`/movie/${movieId}`);   
+                        break;
+                    case 'tv':
+                        info = await basicFetch(`/tv/${movieId}`);
+                        break;
+                    default:
+                        info = null;
+                        break;
+                }
+            } catch (error) {
+                console.error(`Erro ao buscar informações do ${type}:`, error);
+            }
         }
+        return info;
     }
-    return info;
-}
 
-
-    // Carregar as categorias de filmes (filtradas pela Netflix) quando o componente for montado
     useEffect(() => {
         const loadAll = async () => {
-            let list = [
-                {
-                    slug: "topRated",
-                    title: "Top Filmes Hoje",
-                    items: await basicFetch('/movie/top_rated?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_networks=213')
-                },
-                {
-                    slug: "originals",
-                    title: "Originais verzelflix",
-                    items: await basicFetch('/discover/tv?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_networks=213') // 18 = Drama
-                },
-                {
-                    slug: "action-adventure",
-                    title: "Ação e Aventura",
-                    items: await basicFetch('/discover/movie?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_genres=28&with_networks=213') // 28 = Ação
-                },
-                {
-                    slug: "farrowest",
-                    title: "Farroeste",
-                    items: await basicFetch('/discover/movie?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_genres=37&with_networks=213') // 37 = Farroeste
-                },
-                {
-                    slug: "horror",
-                    title: "Terror",
-                    items: await basicFetch('/discover/movie?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_genres=27&with_networks=213') // 27 = Terror
-                },
-                {
-                    slug: "documentary",
-                    title: "Documentário",
-                    items: await basicFetch('/discover/movie?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_genres=99&with_networks=213') // 18 = Documentário
-                },
-                {
-                    slug: "romance",
-                    title: "Romance",
-                    items: await basicFetch('/discover/movie?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_genres=10749&with_networks=213') // 10749 = Romance
-                },
-                {
-                    slug: "comedy",
-                    title: "Comédia",
-                    items: await basicFetch('/discover/movie?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18&with_genres=35&with_networks=213') // 35 = Comédia
-                }
-            ];
+            try {
+                let list = [
+                    {
+                        slug: "topRated",
+                        title: "Top Filmes Hoje",
+                        items: await basicFetch('/movie/top_rated')
+                    },
+                    {
+                        slug: "originals",
+                        title: "Originais verzelflix",
+                        items: await basicFetch('/discover/tv') 
+                    },
+                    {
+                        slug: "action-adventure",
+                        title: "Ação e Aventura",
+                        items: await basicFetch('/discover/movie', '28') // 28 = Ação
+                    },
+                    {
+                        slug: "farrowest",
+                        title: "Farroeste",
+                        items: await basicFetch('/discover/movie', '37') // 37 = Farroeste
+                    },
+                    {
+                        slug: "horror",
+                        title: "Terror",
+                        items: await basicFetch('/discover/movie', '27') // 27 = Terror
+                    },
+                    {
+                        slug: "documentary",
+                        title: "Documentário",
+                        items: await basicFetch('/discover/movie', '99') // 99 = Documentário
+                    },
+                    {
+                        slug: "romance",
+                        title: "Romance",
+                        items: await basicFetch('/discover/movie', '10749') // 10749 = Romance
+                    },
+                    {
+                        slug: "comedy",
+                        title: "Comédia",
+                        items: await basicFetch('/discover/movie', '35') // 35 = Comédia
+                    }
+                ];
 
-            setMovieList(list);      
+                setMovieList(list);
 
-            // Carregar o filme em destaque (featured) quando o componente for montado
-    let originals = list.filter(i => i.slug === 'originals');
-    let randomChosen = Math.floor(Math.random() * (originals[0].items.results.length - 1));
-    let chosen = originals[0].items.results[randomChosen];
-    let chosenInfo = await getMovieInfo(chosen.id, 'tv');
-    setFeaturedData(chosenInfo);
-    };
+                // Carregar o filme em destaque (featured) quando o componente for montado
+                let originals = list.find(i => i.slug === 'originals');
+                let randomChosen = Math.floor(Math.random() * (originals.items.results.length - 1));
+                let chosen = originals.items.results[randomChosen];
+                let chosenInfo = await getMovieInfo(chosen.id, 'tv');
+                setFeaturedData(chosenInfo);
+            } catch (error) {
+                console.error("Erro ao carregar dados:", error);
+            }
+        };
 
         loadAll();
     }, []);
 
-    //efeito para mudar a cor do header ao rolar a página
     useEffect(() => {
         const scrollListener = () => {
-            if(window.scrollY > 10) {
+            if (window.scrollY > 10) {
                 setBlackHeader(true);
             } else {
                 setBlackHeader(false);
@@ -121,8 +131,8 @@ async function getMovieInfo(movieId, type) {
 
         <section className='lists'>
             {movieList.map((item, key) => (
-                <div> 
-                <MovieRow key={key} title={item.title} items={item.items} />
+                <div key={key}>
+                <MovieRow title={item.title} items={item.items} />
                 </div>
             ))}
         </section>

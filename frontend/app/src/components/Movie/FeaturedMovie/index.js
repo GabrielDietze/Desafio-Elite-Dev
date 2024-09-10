@@ -1,7 +1,7 @@
 import React from "react";
 import "./FeaturedMovie.css";
 
-// Defina a função como uma constante
+
 const FeaturedMovie = ({item}) => {
     return (
         <section className="featured" style={
@@ -28,5 +28,4 @@ const FeaturedMovie = ({item}) => {
     );
 };
 
-// Exporte a função
 export default FeaturedMovie;

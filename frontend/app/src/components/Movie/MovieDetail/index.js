@@ -3,17 +3,37 @@ import './MovieDetail.css';
 import Header from '../../header';
 import { useParams } from 'react-router-dom';
 import BackButton from '../../backbutton/BackButton.js';
+import api from '../../../services/api';
 
 const MovieDetail = () => {
     const { type, id } = useParams(); // Pega o parâmetro type e id da URL
     const [item, setItem] = useState(null);
+    const [blackHeader, setBlackHeader] = useState(false);
+
+    useEffect(() => {
+        const scrollListener = () => {
+            if (window.scrollY > 10) {
+                setBlackHeader(true);
+            } else {
+                setBlackHeader(false);
+            }
+        }
+
+        window.addEventListener('scroll', scrollListener);
+
+        return () => {
+            window.removeEventListener('scroll', scrollListener);
+        }
+    }, []);
 
     useEffect(() => {
         const fetchItem = async () => {
-            const baseUrl = `https://api.themoviedb.org/3/${type}/${id}?language=pt-BR&api_key=9176897d907d95a90bceec1049b05c18`;
-            const response = await fetch(baseUrl);
-            const data = await response.json();
-            setItem(data);
+            try {
+                const response = await api.get(`/${type}/${id}`);
+                setItem(response.data);
+            } catch (error) {
+                console.error('Erro ao buscar detalhes do filme:', error);
+            }
         };
         fetchItem();
     }, [type, id]);
@@ -24,11 +44,12 @@ const MovieDetail = () => {
 
     const genres = item.genres ? item.genres.map((genre) => genre.name).join(', ') : '';
 
+       
     return (
         <>
             <div className='container-movie-detail'>
             <div className='header-movie-detail'>
-                <Header />
+            <Header black={blackHeader}/> 
             </div>
             
             <section className="movie" style={{

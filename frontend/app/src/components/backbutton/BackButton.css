@@ -1,18 +1,18 @@
 .back-button {
     background: none;
     border: none;
-    cursor: pointer;
     padding: 10px;
     display: flex;
     align-items: center;
   }
-  
+
   .back-button svg {
     font-size: 2rem; 
     color: #ffffff; 
+    cursor: pointer;
   }
   
-  .back-button:hover {
+  .back-button svg:hover {
     opacity: 0.8; 
   }
   

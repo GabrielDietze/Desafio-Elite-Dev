@@ -39,7 +39,10 @@ const MovieDetail = () => {
     }, [type, id]);
 
     if (!item) {
-        return <div>Carregando...</div>;
+        return   <div className='loading'>
+            <img src="https://media1.tenor.com/m/UnFx-k_lSckAAAAC/amalie-steiness.gif" alt="Carregando" />
+            </div>
+        
     }
 
     const genres = item.genres ? item.genres.map((genre) => genre.name).join(', ') : '';

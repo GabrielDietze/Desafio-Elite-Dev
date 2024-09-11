@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './MovieDetail.css';
 import Header from '../../header';
 import { useParams } from 'react-router-dom';
-import BackButton from '../../backbutton/BackButton.js';
+import BackButton from '../../Utils/backbutton/BackButton';
 import api from '../../../services/api';
+import FavoriteButton from '../../Utils/FavoriteButton/FavoriteButton';
 
 const MovieDetail = () => {
     const { type, id } = useParams(); // Pega o parâmetro type e id da URL
@@ -82,7 +83,7 @@ const MovieDetail = () => {
                 </div>
                 <div className="movie-description"> {item.overview} </div>
                 <div className="featured-buttons">
-                    <a href={`/movie/${item.id}`} className="featured-FavoriteButton"> + Adicionar Aos Favoritos </a>
+                  <FavoriteButton itemId={item.id} />
                 </div>
                 {genres && (
                     <div className="featured-genres">

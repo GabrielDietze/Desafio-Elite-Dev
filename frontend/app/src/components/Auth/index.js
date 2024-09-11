@@ -30,8 +30,10 @@ const Login = () => {
 
       if (response.status === 200) {
         if (!isRegister) {
-          // Assumindo que a resposta inclui um token
+          // Assumindo que a resposta inclui um token e o nome de usuário
           localStorage.setItem('authToken', response.data.token);
+          localStorage.setItem('username', formData.username); // Salva o nome de usuário
+          localStorage.setItem('userId', response.data.userId); // Salva o ID do usuário
         }
 
         // Substitua o alert por toastify
@@ -65,15 +67,7 @@ const Login = () => {
             onChange={handleChange}
             required
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="Senha"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-          {isRegister && (
+           {isRegister && (
             <input
               type="email"
               name="email"
@@ -83,6 +77,15 @@ const Login = () => {
               required
             />
           )}
+          <input
+            type="password"
+            name="password"
+            placeholder="Senha"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+         
           <button type="submit" className="submit-btn">
             {isRegister ? "Registrar" : "Login"}
           </button>

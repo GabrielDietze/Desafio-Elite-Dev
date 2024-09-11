@@ -7,7 +7,7 @@ const FeaturedMovie = ({item}) => {
         <section className="featured" style={
             {backgroundSize: 'cover',
             backgroundPosition: 'center',
-            backgroundImage: `linear-gradient(to right, #111 30%, transparent 70%), linear-gradient(to top, rgba(0, 0, 0, 0.7) 10%, transparent 90%), url(https://image.tmdb.org/t/p/original${item.backdrop_path})`}
+            backgroundImage: `linear-gradient(to right, #111 30%, transparent 70%), linear-gradient(to top, rgba(0, 0, 0, 0.7) 10%, transparent 90%), url(https://image.tmdb.org/t/p/original${item.backdrop_path} )`}
         }>
             <div className="featured-name">  {item.original_name}  </div>    
         

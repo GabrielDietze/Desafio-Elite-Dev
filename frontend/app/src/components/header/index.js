@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
 import { useLocation } from "react-router-dom";
 import './header.css';
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,6 +10,7 @@ const Header = ({ black }) => {
     const location = useLocation();
     const [activePage, setActivePage] = useState('');
     const [menuOpen, setMenuOpen] = useState(false);
+    const navigate = useNavigate(); // Inicializa useNavigate
 
     useEffect(() => {
         // Atualiza o estado com base no caminho da URL
@@ -18,6 +19,13 @@ const Header = ({ black }) => {
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
+    };
+
+    const handleLogout = () => {
+        // Remove o token de autenticação
+        localStorage.removeItem('authToken');
+        // Redireciona para a página de login
+        navigate('/login');
     };
 
     return (
@@ -60,7 +68,7 @@ const Header = ({ black }) => {
                 </div>
                 <div className={`user-menu ${menuOpen ? 'show' : ''} `}>
                     <Link to="/profile" className="user-menu-item">Editar Perfil</Link>
-                    <div className="user-menu-item">Sair</div>
+                    <div className="user-menu-item" onClick={handleLogout}>Sair</div>
                 </div>
             </div>
         </header> 

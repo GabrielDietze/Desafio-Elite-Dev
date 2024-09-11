@@ -46,7 +46,7 @@
     margin-top: 1rem;
 }
 
-.featured-watchbutton, .featured-FavoriteButton{
+.featured-watchbutton{
     display: inline-block;
     font-size: 1rem;
     font-weight: bold;
@@ -58,7 +58,7 @@
     transition: all ease 0.2s;
 }
 
-.featured-watchbutton:hover, .featured-FavoriteButton:hover{
+.featured-watchbutton:hover{
     opacity: 0.7;
 }
 
@@ -67,10 +67,6 @@
     color: black;
 }
 
-.featured-FavoriteButton{
-    background-color: #333;
-    color: white;
-}
 
 .featured-genres{
     margin-top: 0.8rem;
@@ -97,7 +93,7 @@
     .featured-buttons{
         margin-top: 0.5rem;
     }
-    .featured-watchbutton, .featured-FavoriteButton{
+    .featured-watchbutton{
         font-size: 0.9rem;
         padding: 0.5rem 0.8rem;
         margin-right: 0.6rem;
@@ -117,7 +113,7 @@
     .featured-description{
         font-size: 0.8rem;
     }
-    .featured-watchbutton, .featured-FavoriteButton{
+    .featured-watchbutton{
         font-size: 0.8rem;
     }
     .featured-genres{
@@ -135,7 +131,7 @@
     .featured-description{
         font-size: 0.7rem;
     }
-    .featured-watchbutton, .featured-FavoriteButton{
+    .featured-watchbutton{
         font-size: 0.7rem;
     }
     .featured-genres{

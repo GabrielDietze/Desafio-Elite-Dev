@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../header'; 
 import './favorites.css';
-import BackButton from '../backbutton/BackButton.js';
+import BackButton from '../Utils/backbutton/BackButton';
 import { Link } from 'react-router-dom';
 
 const Favorite = (item) => {
@@ -12,6 +12,8 @@ const Favorite = (item) => {
     // Verifica se o item é uma série ou um filme
     return item.hasOwnProperty('number_of_seasons') ? 'tv' : 'movie';
   }
+
+  console.log(localStorage.getItem("userId"));
 
     //efeito para mudar a cor do header ao rolar a página
     useEffect(() => {

@@ -1,4 +1,4 @@
-
+/* Container principal do componente de edição de perfil */
 .edit-profile-container {
     display: flex;
     justify-content: center;
@@ -7,27 +7,30 @@
     background-color: #141414; 
 }
 
+/* Cabeçalho do perfil de edição */
 .header-edit-profile {
     display: flex;
     align-items: center;
     justify-content: space-between; 
     width: 100%;
-
+    margin-bottom: 1.25rem; 
 }
 
+/* Conteúdo do perfil de edição */
 .content-edit-profile {
     background-color: #222; 
-    padding: 2.5rem; 
-    border-radius: 0.5rem; 
+    padding: 1.5rem; 
     box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.7); /* Sombra ajustada */
     width: 100%;
     max-width: 25rem; 
 }
 
+/* Estilo para o botão de voltar */
 .back-button {
     display: inline-block;
 }
 
+/* Título do cabeçalho do perfil de edição */
 .header-edit-profile h1 {
     color: #fff;
     font-size: 1.5rem; 
@@ -36,17 +39,12 @@
     margin: 0;
 }
 
-.header-edit-profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem; 
-}
-
+/* Formulário de edição do perfil */
 .edit-profile-form .form-group {
     margin-bottom: 1.25rem; 
 }
 
+/* Estilo para os rótulos do formulário */
 .edit-profile-form label {
     display: block;
     margin-bottom: 0.5rem; 
@@ -54,6 +52,7 @@
     font-size: 0.875rem;
 }
 
+/* Estilo para os campos de entrada do formulário */
 .edit-profile-form input {
     width: 100%;
     padding: 0.875rem;
@@ -64,11 +63,13 @@
     font-size: 0.875rem;
 }
 
+/* Estilo para os campos de entrada quando estão em foco */
 .edit-profile-form input:focus {
     outline: none;
     background-color: #444;
 }
 
+/* Estilo para o botão de salvar */
 .save-button {
     width: 100%;
     padding: 0.875rem;
@@ -84,3 +85,19 @@
 .save-button:hover {
     background-color: #f3202a;
 }
+
+/* Estilos para dispositivos com largura de tela de até 768px */
+@media (max-width: 768px) {
+    .content-edit-profile {
+        padding: 1rem; 
+    }
+
+    .edit-profile-form input {
+        padding: 0.75rem;
+    }
+
+    .save-button {
+        padding: 0.75rem;
+    }
+}
+

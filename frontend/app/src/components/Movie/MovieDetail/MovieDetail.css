@@ -1,6 +1,7 @@
+/* Estilo para a seção de detalhes do filme */
 .movie {
-    width: 100%; /* Ajuste conforme necessário */
-    height:calc(100VH - 4rem) ; /* Ajuste conforme necessário */
+    width: 100%; 
+    height:calc(100VH - 4rem) ;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,10 +11,13 @@
     flex: 1;
 }
 
+
+/* Estilo para o cabeçalho da seção de detalhes do filme */
 .header-movie-detail{
     margin-bottom: 0;
 }
 
+/* Estilo para a descrição do filme */
 .movie-description{
     margin-top: 1rem;
     font-size: 1rem;
@@ -21,6 +25,7 @@
     max-width: 40%;
 }
 
+/* Estilo para o contêiner de detalhes do filme */
 .container-movie-detail{
     display: flex;
     flex-direction: column;

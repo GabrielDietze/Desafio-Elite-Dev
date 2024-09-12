@@ -19,7 +19,7 @@ const FeaturedMovie = ({item}) => {
             <div className="featured-description"> {item.overview} </div>
             <div className="featured-buttons">
                 <a href={`/tv/${item.id}`} className="featured-watchbutton"> Ver Mais </a>
-                <FavoriteButton itemId={item.id} />
+                <FavoriteButton item={item} />
             </div>
             <div className="featured-genres"><strong>{item.genres.length > 1 ? 'Gêneros' : 'Gênero'}:</strong> {item.genres.map((genre) => genre.name).join(', ')}</div>
 

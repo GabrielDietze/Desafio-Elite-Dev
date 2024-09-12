@@ -83,7 +83,7 @@ const MovieDetail = () => {
                 </div>
                 <div className="movie-description"> {item.overview} </div>
                 <div className="featured-buttons">
-                  <FavoriteButton itemId={item.id} />
+                  <FavoriteButton item={item} />
                 </div>
                 {genres && (
                     <div className="featured-genres">

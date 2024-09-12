@@ -1,20 +1,25 @@
+/* Estilo para a linha de filmes */
 .movieRow{
     margin-bottom: 2rem;
 }
 
+/* Estilo para o título dentro da linha de filmes */
 .movieRow h2{
     margin: 0 0 0 2rem;
 }
 
+/* Área de listagem de filmes */
 .movieRow-listarea{
     overflow-x: hidden; 
     padding-left: 2rem;
 }
 
+/* Estilo para a lista de filmes */
 .movieRow-list{
     transition: all ease 0.5s;
 }
 
+/* Estilo para itens individuais dentro da linha de filmes */
 .movieRow-item{
     display: inline-block;
     transition: transform 0.2s;
@@ -22,16 +27,19 @@
     cursor: pointer;
 }
 
+/* Estilo para as imagens dentro dos itens de filmes */
 .movieRow-item img{
     width: 100%;
     transform: scale(0.9);
     transition: all ease 0.2s;
 }
 
+/* Estilo para a imagem ao passar o mouse */
 .movieRow-item img:hover{
     transform: scale(1);
 }
 
+/* Estilo para os botões de navegação esquerda e direita */
 .movieRow-left, .movieRow-right{
     position: absolute;
     width: 2.4rem;
@@ -47,18 +55,22 @@
     transition: all ease 0.5s;
 }
 
+/* Estilo para o botão de navegação esquerda */
 .movieRow-left{
     left: 0;
 }
 
+/* Estilo para o botão de navegação direita */
 .movieRow-right{
     right: 0;
 }
 
+/* Exibe os botões de navegação ao passar o mouse sobre a linha de filmes */
 .movieRow:hover .movieRow-left, .movieRow:hover .movieRow-right{
     opacity: 1;
 }
 
+/* Estilo para a linha de filmes em telas menores */
 @media (max-width: 760px){
     .movieRow-left, .movieRow-right{
         opacity: 1;

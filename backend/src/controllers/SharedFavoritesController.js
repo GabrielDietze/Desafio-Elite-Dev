@@ -53,7 +53,7 @@ exports.getFavoritesByShareLink = async (req, res) => {
     }
 
     // Retorna a lista de filmes favoritos do usuário
-    res.status(200).json({ favoriteMovies: user.favoriteMovies });
+    res.status(200).json({ userName: user.username, favoriteMovies: user.favoriteMovies });
   } catch (err) {
     console.error('Erro ao acessar favoritos via link compartilhado:', err);
     res.status(500).json({ error: 'Erro ao acessar favoritos' });

@@ -17,9 +17,9 @@ exports.index = async (req, res) => {
   }
 };
 
-// Adicionar um filme à lista de favoritos
+// Adicionar uma mídia (filme ou série) à lista de favoritos
 exports.store = async (req, res) => {
-  const { userId, movieId } = req.body;
+  const { userId, mediaId, mediaType } = req.body;
 
   try {
     const user = await User.findById(userId);
@@ -28,22 +28,23 @@ exports.store = async (req, res) => {
       return res.status(404).json({ error: 'Usuário não encontrado' });
     }
 
-    if (user.favoriteMovies.includes(movieId)) {
-      return res.status(400).json({ error: 'Filme já está na lista de favoritos' });
+    // Verifica se o favorito já existe
+    if (user.favoriteMovies.some(fav => fav.mediaId === mediaId && fav.mediaType === mediaType)) {
+      return res.status(400).json({ error: 'Mídia já está na lista de favoritos' });
     }
 
-    user.favoriteMovies.push(movieId);
+    user.favoriteMovies.push({ mediaId, mediaType });
     await user.save();
 
-    res.status(200).json({ message: 'Filme adicionado aos favoritos' });
+    res.status(200).json({ message: 'Mídia adicionada aos favoritos' });
   } catch (err) {
-    res.status(500).json({ error: 'Erro ao adicionar filme aos favoritos' });
+    res.status(500).json({ error: 'Erro ao adicionar mídia aos favoritos' });
   }
 };
 
-// Remover um filme da lista de favoritos
+// Remover uma mídia da lista de favoritos
 exports.delete = async (req, res) => {
-  const { userId, movieId } = req.body;
+  const { userId, mediaId, mediaType } = req.body;
 
   try {
     const user = await User.findById(userId);
@@ -52,16 +53,16 @@ exports.delete = async (req, res) => {
       return res.status(404).json({ error: 'Usuário não encontrado' });
     }
 
-    const index = user.favoriteMovies.indexOf(movieId);
+    const index = user.favoriteMovies.findIndex(fav => fav.mediaId === mediaId && fav.mediaType === mediaType);
     if (index === -1) {
-      return res.status(400).json({ error: 'Filme não está na lista de favoritos' });
+      return res.status(400).json({ error: 'Mídia não está na lista de favoritos' });
     }
 
     user.favoriteMovies.splice(index, 1);
     await user.save();
 
-    res.status(200).json({ message: 'Filme removido dos favoritos' });
+    res.status(200).json({ message: 'Mídia removida dos favoritos' });
   } catch (err) {
-    res.status(500).json({ error: 'Erro ao remover filme dos favoritos' });
+    res.status(500).json({ error: 'Erro ao remover mídia dos favoritos' });
   }
 };

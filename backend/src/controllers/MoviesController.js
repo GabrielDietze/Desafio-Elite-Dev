@@ -1,26 +1,44 @@
 const axios = require('axios');
-const Movie = require('../models/movie');
 require('dotenv').config();
 
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
 const LANGUAGE_PARAM = 'pt-BR';
 
-// Buscar filmes em cartaz
-exports.searchMovies = async (req, res) => {
-  const query = req.params.query;
+exports.searchMoviesAndTVShows = async (req, res) => {
+  const query = req.query.query; // Use query em vez de params
+
+  if (!query) {
+    return res.status(400).json({ error: 'Parâmetro de busca não fornecido' });
+  }
+
   try {
-    const response = await axios.get(`${TMDB_BASE_URL}/search/movie`, {
-      params: {
-        api_key: TMDB_API_KEY,
-        query: query,
-        language: LANGUAGE_PARAM,
-        with_networks: 213 // Netflix
-      }
+    // Faz duas requisições: uma para filmes e outra para séries
+    const [moviesResponse, tvShowsResponse] = await Promise.all([
+      axios.get(`${TMDB_BASE_URL}/search/movie`, {
+        params: {
+          api_key: TMDB_API_KEY,
+          query: query,
+          language: LANGUAGE_PARAM
+        }
+      }),
+      axios.get(`${TMDB_BASE_URL}/search/tv`, {
+        params: {
+          api_key: TMDB_API_KEY,
+          query: query,
+          language: LANGUAGE_PARAM
+        }
+      })
+    ]);
+
+    // Combina os resultados
+    res.json({
+      movies: moviesResponse.data.results,
+      tvShows: tvShowsResponse.data.results
     });
-    res.json(response.data);
-  } catch (err) {
-    res.status(500).json({ error: 'Erro ao buscar filmes' });
+  } catch (error) {
+    console.error('Erro ao buscar filmes e séries:', error.message);
+    res.status(500).json({ error: 'Erro ao buscar filmes e séries' });
   }
 };
 

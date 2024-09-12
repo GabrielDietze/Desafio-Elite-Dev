@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from "react-router-dom";
 import './header.css';
 import SearchIcon from '@mui/icons-material/Search';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import api from '../../services/api'; // Certifique-se de importar o 'api'
 
-const Header = ({ black }) => {
+const Header = ({ black, onSearch }) => { // Adiciona a prop `onSearch`
     const location = useLocation();
     const [activePage, setActivePage] = useState('');
     const [menuOpen, setMenuOpen] = useState(false);
-    const navigate = useNavigate(); // Inicializa useNavigate
+    const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor da busca
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Atualiza o estado com base no caminho da URL
         setActivePage(location.pathname);
     }, [location]);
 
@@ -22,11 +23,36 @@ const Header = ({ black }) => {
     };
 
     const handleLogout = () => {
-        // Remove o token de autenticação
         localStorage.removeItem('authToken');
-        // Redireciona para a página de login
         navigate('/login');
     };
+
+   // Função de busca
+const handleSearch = async () => {
+    if (searchTerm.trim()) {
+        try {
+            const response = await api.get(`/search/movies-and-tv-shows`, {
+                params: {
+                    query: searchTerm
+                }
+            });
+
+            // A estrutura dos dados deve ser adaptada com base no retorno do back-end
+            console.log(response.data);
+            
+            // Passa os resultados para o componente pai
+            // A estrutura dos dados é: response.data.movies e response.data.tvShows
+            onSearch({
+                movies: response.data.movies,
+                tvShows: response.data.tvShows
+            });
+
+        } catch (error) {
+            console.error('Erro ao buscar filmes e séries:', error);
+        }
+    }
+};
+
 
     return (
         <header className={black ? 'black' : ''}>
@@ -57,9 +83,15 @@ const Header = ({ black }) => {
             </div>
             <div className="header-search">
                 <div>
-                    <SearchIcon className="search-icon" />
+                    <SearchIcon className="search-icon" onClick={handleSearch} />
                 </div>
-                <input type="text" placeholder="Buscar"/>
+                <input 
+                    type="text" 
+                    placeholder="Buscar" 
+                    value={searchTerm} 
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // Chama a busca ao pressionar Enter
+                />
             </div>
             <div className="header-user">
                 <img src="/images/user-icon.jpeg" alt="user" onClick={toggleMenu} />
@@ -71,7 +103,7 @@ const Header = ({ black }) => {
                     <div className="user-menu-item" onClick={handleLogout}>Sair</div>
                 </div>
             </div>
-        </header> 
+        </header>
     );
 };
 

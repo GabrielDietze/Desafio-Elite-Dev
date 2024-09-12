@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true,
+    trim: true,    // Remove espaços em branco ao redor do nome de usuário
   },
   email: {
     type: String,

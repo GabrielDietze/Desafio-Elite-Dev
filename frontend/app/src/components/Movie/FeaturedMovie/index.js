@@ -2,8 +2,10 @@ import React from "react";
 import "./FeaturedMovie.css";
 import FavoriteButton from "../../Utils/FavoriteButton/FavoriteButton";
 
+// Componente para exibir um filme em destaque
 const FeaturedMovie = ({item}) => {
     return (
+          // Seção para o filme em destaque com estilos inline para o background
         <section className="featured" style={
             {backgroundSize: 'cover',
             backgroundPosition: 'center',

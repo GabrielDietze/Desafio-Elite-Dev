@@ -4,9 +4,10 @@ import api from '../../../services/api'; // Certifique-se de ter a instância da
 import { toast } from 'react-toastify'; // Importa o toast para notificações
 
 const FavoriteButton = ({ item }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [isFavorite, setIsFavorite] = useState(false); // Estado para controlar se o item é favorito
+  const [loading, setLoading] = useState(true); // Estado para controlar o carregamento
 
+  // Função para determinar o tipo de mídia (tv ou movie) com base no item
   const typeofItem = (item) => {
     if (item.media_type) {
       return item.media_type; // Caso a API já forneça o tipo (tv ou movie)
@@ -19,36 +20,33 @@ const FavoriteButton = ({ item }) => {
     }
   };
 
+  // Função para verificar se o item já está marcado como favorito
   const checkIfFavorite = useCallback(async () => {
-    const type = typeofItem(item);
-    const mediaId = item.id;
-    const userId = localStorage.getItem('userId');
+    const type = typeofItem(item); // Determina o tipo de mídia
+    const mediaId = item.id; // ID da mídia (filme ou série)
+    const userId = localStorage.getItem('userId'); // Obtém o ID do usuário salvo no localStorage
 
     if (userId && mediaId) {
-      try {
-        const response = await api.get(`/favorites/${userId}`);
-        const favorites = response.data.favoriteMovies; // Acessa o array de favoritos
+      // Faz uma requisição GET para obter a lista de favoritos do usuário
+      const response = await api.get(`/favorites/${userId}`);
+      const favorites = response.data.favoriteMovies; // Acessa o array de filmes/séries favoritos
 
-        if (Array.isArray(favorites)) {
-          const isFavorite = favorites.some(fav => fav.mediaId === mediaId && fav.mediaType === type);
-          setIsFavorite(isFavorite);
-        } else {
-          console.error('A resposta da API não contém um array de favoritos:', favorites);
-        }
-      } catch (error) {
-        console.error('Erro ao verificar favoritos:', error);
-      }
+      // Verifica se o item atual já está nos favoritos do usuário
+      const isFavorite = favorites.some(fav => fav.mediaId === mediaId && fav.mediaType === type);
+      setIsFavorite(isFavorite); // Atualiza o estado para indicar se é favorito
     }
 
-    setLoading(false);
-  }, [item]);
+    setLoading(false); // Desativa o estado de carregamento
+  }, [item]); // Dependência de `item` para evitar reexecuções desnecessárias
 
+  // Função para adicionar ou remover o item dos favoritos
   const handleFavoriteToggle = async () => {
-    const type = typeofItem(item);
-    const mediaId = item.id;
-    const userId = localStorage.getItem('userId');
+    const type = typeofItem(item); // Determina o tipo de mídia
+    const mediaId = item.id; // ID da mídia (filme ou série)
+    const userId = localStorage.getItem('userId'); // Obtém o ID do usuário
 
     if (isFavorite) {
+      // Se o item já é favorito, realiza a remoção
       try {
         await api.delete('/favorites', {
           data: {
@@ -57,31 +55,31 @@ const FavoriteButton = ({ item }) => {
             userId
           }
         });
-        setIsFavorite(false);
-        toast.success('Item removido dos favoritos!');
+        setIsFavorite(false); // Atualiza o estado para não-favorito
+        toast.success('Item removido dos favoritos!'); // Mostra notificação de sucesso
       } catch (error) {
-        console.error('Erro ao remover dos favoritos:', error);
-        toast.error('Erro ao remover dos favoritos.');
+        toast.error('Erro ao remover dos favoritos.'); // Mostra notificação de erro
       }
     } else {
+      // Se o item não é favorito, realiza a adição
       try {
         await api.post('/favorites', {
           mediaId,
           mediaType: type,
           userId
         });
-        setIsFavorite(true);
-        toast.success('Item adicionado aos favoritos!');
+        setIsFavorite(true); // Atualiza o estado para favorito
+        toast.success('Item adicionado aos favoritos!'); // Mostra notificação de sucesso
       } catch (error) {
-        console.error('Erro ao adicionar aos favoritos:', error);
-        toast.error('Erro ao adicionar aos favoritos.');
+        toast.error('Erro ao adicionar aos favoritos.'); // Mostra notificação de erro
       }
     }
   };
 
+  // useEffect para verificar o status de favorito quando o componente monta ou o item muda
   useEffect(() => {
-    checkIfFavorite();
-  }, [checkIfFavorite]);
+    checkIfFavorite(); // Chama a função para verificar se o item é favorito
+  }, [checkIfFavorite]); // A função de verificação é a dependência
 
   return (
     <button onClick={handleFavoriteToggle} className="FavoriteButton" disabled={loading}>

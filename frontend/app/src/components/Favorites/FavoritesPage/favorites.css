@@ -1,0 +1,37 @@
+/* Define o espaçamento superior da página de favoritos */
+.favorites-page {
+    padding-top: 4rem;
+}
+
+/* Configura a exibição da lista de favoritos como uma grade responsiva */
+.favorites-list {
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    padding: 0 1.5rem;
+}
+
+/* Faz com que as imagens dos itens ocupem toda a largura do contêiner */
+.favorites-item img {
+    width: 100%;
+}
+
+/* Define a escala dos itens de favoritos para 0.9 (90%) */
+.favorites-item {
+    transform: scale(0.9);
+}
+
+/* Aplica um efeito de escala e transição ao passar o mouse sobre o item de favoritos */
+.favorites-item:hover {
+    transform: scale(1);
+    transition: all ease 0.2s;
+    cursor: pointer;
+}
+
+/* Configura o menu de navegação dos favoritos para alinhamento e espaçamento */
+.nav-menu-favorite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5rem;
+}

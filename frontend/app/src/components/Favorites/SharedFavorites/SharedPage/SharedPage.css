@@ -1,0 +1,81 @@
+/* Adiciona um espaço superior de 4rem na página de favoritos compartilhados */
+.shared-favorites-page {
+    padding-top: 4rem; 
+}
+
+/* Estiliza o contêiner do menu de navegação dentro da seção de favoritos compartilhados */
+.nav-menu-SharedFavorite {
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
+    padding: 0 1.5rem; 
+    margin-bottom: 2rem;
+}
+
+/* Define a margem esquerda do título na seção de favoritos compartilhados */
+.nav-menu-SharedFavorite h1 {
+    margin-left: 6rem;
+}
+
+/* Estiliza a lista de itens favoritos como uma grade responsiva */
+.favorites-list {
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); 
+    gap: 2rem; 
+    padding: 0 1.5rem; 
+}
+
+/* Estiliza as imagens dentro dos itens favoritos */
+.favorites-item img {
+    width: 100%; 
+    border-radius: 1rem; 
+}
+
+/* Ajusta o layout para telas com largura máxima de 560px */
+@media (max-width: 560px) {
+    .nav-menu-SharedFavorite h1 {
+        margin-left: 1rem; 
+    }
+  
+    .favorites-list {
+        gap: 1rem; 
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 2fr)); 
+    }
+}
+
+/* Ajusta o layout para telas com largura máxima de 400px */
+@media (max-width: 400px) {
+    .nav-menu-SharedFavorite h1 {
+        margin-left: 0.5rem; 
+    }
+  
+    .favorites-list {
+        gap: 0.5rem; 
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 3fr)); 
+    }
+}
+
+/* Ajusta o layout para telas com largura máxima de 320px */
+@media (max-width: 320px) {
+    .favorites-list {
+        grid-template-columns: repeat(auto-fill, minmax(8rem, 4fr)); 
+    }
+}
+
+/* Ajusta o layout para telas com largura máxima de 280px */
+@media (max-width: 280px) {
+    .favorites-list {
+        grid-template-columns: repeat(auto-fill, minmax(6rem, 5fr)); 
+    }
+}
+
+/* Estiliza a mensagem de erro com centralização e formatação de texto */
+.error-message {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    height: 80vh; 
+    text-align: center; 
+    font-size: 1.5rem; 
+    color: red; 
+}

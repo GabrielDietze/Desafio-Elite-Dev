@@ -24,12 +24,11 @@ exports.login = async (req, res) => {
       user: {
         id: user.id,
         username: user.username,
-        userId: user.id
       }
     };
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
+    res.json({ token, userId: user.id });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Erro no servidor');

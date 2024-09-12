@@ -6,6 +6,7 @@ import { NavigateBefore, NavigateNext } from "@mui/icons-material";
 export default function MovieRow({ title, items }) {
     const [scrollX, setScrollX] = useState(0);
     const itemWidthRem = 9.53; // 150px em rem
+    
 
     const typeofItem = (item) => {
         if (item.media_type) {

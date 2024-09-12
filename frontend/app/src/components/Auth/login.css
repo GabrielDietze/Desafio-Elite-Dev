@@ -1,12 +1,14 @@
+/* Container para o login, fixo e centralizado */
 .login-container {
     position: fixed;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.75); 
+    background: rgba(0, 0, 0, 0.75);
 }
 
+/* Caixa de login com estilo e sombras */
 .login-box {
     background-color: rgba(27, 27, 27, 0.85);
     padding: 2rem;
@@ -17,12 +19,12 @@
     box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-/* Ajuste na imagem dentro da caixa de login */
+/* Estilo da imagem dentro da caixa de login */
 .login-box img {
     margin-bottom: 2rem;
 }
 
-/* Estilos para os campos do formulário */
+/* Estilo dos campos de input do formulário */
 form input {
     background-color: #333;
     border: none;
@@ -34,7 +36,7 @@ form input {
     width: 100%;
 }
 
-/* Placeholder dos campos do formulário */
+/* Estilo do placeholder dos campos de input */
 form input::placeholder {
     color: #8c8c8c;
 }
@@ -58,7 +60,7 @@ form input::placeholder {
     background-color: #f6121d;
 }
 
-/* Estilo para o texto de alternância */
+/* Estilo do texto de alternância */
 .toggle {
     color: #8c8c8c;
     margin-top: 1rem;
@@ -66,12 +68,12 @@ form input::placeholder {
     font-size: 0.9rem;
 }
 
-/* Estilo para o texto de alternância ao passar o mouse */
+/* Estilo do texto de alternância ao passar o mouse */
 .toggle:hover {
     text-decoration: underline;
 }
 
-/* Estilos responsivos */
+/* Estilos responsivos para telas menores */
 @media (max-width: 1024px) {
     .login-box {
         padding: 1.5rem;

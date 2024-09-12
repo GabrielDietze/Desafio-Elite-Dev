@@ -1,3 +1,4 @@
+/* Estilo principal para a seção em destaque */
 .featured{
     height: 100vh;
     display: flex;
@@ -8,44 +9,51 @@
     padding-bottom: 8rem;
 }
 
+/* Nome do filme em destaque */
 .featured-name{
-    font-size:3rem;
+    font-size: 3rem;
     font-weight: bold;
 }
 
+/* Informações do filme (nota, ano, temporadas) */
 .featured-info{
-    font-size:1.25rem;
+    font-size: 1.25rem;
     margin-top: 1rem;
     font-weight: bold;
 }
 
+/* Estilo para pontos, ano e temporadas do filme */
 .featured-points, .featured-year, .featured-seasons{
     display: inline-block;
     margin-right: 1rem;
 }
 
+/* Estilo específico para a nota do filme */
 .featured-points{
     color: yellow; 
 }
 
+/* Descrição do filme */
 .featured-description{
     margin-top: 1rem;
     font-size: 1rem;
     color: #999;
     max-width: 40%;
-    display: -webkit-box; /* Necessário para aplicar a limitação de linhas */
-    -webkit-line-clamp: 4; /* Limita o número de linhas */
-    -webkit-box-orient: vertical; /* Define a orientação da caixa para vertical */
-    overflow: hidden; /* Oculta o texto que ultrapassa o limite */
-    text-overflow: ellipsis; /* Adiciona reticências ao texto que não cabe */
-    line-height: 1.5; /* Define a altura da linha, ajuste conforme necessário */
-    max-height: calc(1.5em * 4); /* Calcula a altura máxima com base na altura da linha */   
+    display: -webkit-box; 
+    -webkit-line-clamp: 4; 
+    -webkit-box-orient: vertical;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    line-height: 1.5; 
+    max-height: calc(1.5em * 4); 
 }
 
+/* Botões na seção em destaque */
 .featured-buttons{
     margin-top: 1rem;
 }
 
+/* Botão para ver mais */
 .featured-watchbutton{
     display: inline-block;
     font-size: 1rem;
@@ -58,22 +66,25 @@
     transition: all ease 0.2s;
 }
 
+/* Efeito de hover para o botão */
 .featured-watchbutton:hover{
     opacity: 0.7;
 }
 
+/* Estilo para o botão de ver mais */
 .featured-watchbutton{
     background-color: white;
     color: black;
 }
 
-
+/* Gêneros do filme */
 .featured-genres{
     margin-top: 0.8rem;
     font-size: 1.125rem;
     color: #999;
 }
 
+/* Ajustes para telas menores que 760px */
 @media (max-width: 760px){
     .featured{
         height: 90vh;
@@ -103,6 +114,7 @@
     }
 }
 
+/* Ajustes para telas menores que 500px */
 @media (max-width:500px){
     .featured-name{
         font-size: 1.5rem;
@@ -121,6 +133,7 @@
     }
 }
 
+/* Ajustes para telas menores que 360px */
 @media (max-width: 360px){
     .featured-name{
         font-size: 1.2rem;

@@ -1,19 +1,28 @@
-.lists{
-    margin-top: -8rem;
+/* Define a margem superior negativa para o contêiner de listas, movendo-o para cima */
+.lists {
+  margin-top: -8rem;
 }
 
+/* Ajusta a margem superior para o contêiner de listas quando a classe 'lists-search-active' está ativa */
+.lists-search-active {
+    margin-top: 4rem;
+}
+
+/* Estiliza o rodapé com margens verticais, centraliza o texto e ajusta a altura da linha */
 footer {
   margin: 4rem 0;
   text-align: center;
   line-height: 1.5;
 }
 
-footer a{
-    text-decoration: none;
-    color: blue;
+/* Remove o sublinhado e define a cor azul para os links no rodapé */
+footer a {
+  text-decoration: none;
+  color: blue;
 }
 
-.loading{
+/* Define a posição fixa para a tela de carregamento, com fundo preto e centralização do conteúdo */
+.loading {
   position: fixed;
   inset: 0;
   z-index: 99;
@@ -23,6 +32,7 @@ footer a{
   align-items: center;
 }
 
-.loading img{
+/* Define a largura da imagem de carregamento como 10% do contêiner */
+.loading img {
   width: 10%;
 }

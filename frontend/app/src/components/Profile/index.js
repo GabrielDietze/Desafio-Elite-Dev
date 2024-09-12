@@ -7,18 +7,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const EditProfile = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const navigate = useNavigate();
-
+     // Declaração dos estados para armazenar informações do usuário
+    const [username, setUsername] = useState(''); // Estado para armazenar o nome de usuário
+    const [email, setEmail] = useState(''); // Estado para armazenar o email
+    const [password, setPassword] = useState(''); // Estado para armazenar a nova senha
+    const [confirmPassword, setConfirmPassword] = useState(''); // Estado para armazenar a confirmação da nova senha
+    const navigate = useNavigate(); // Hook para navegação entre páginas
     // Recuperar o nome de usuário do localStorage
     const storedUsername = localStorage.getItem('username');
 
     useEffect(() => {
         const fetchUserData = async () => {
-            try {
                 // Buscar o usuário pelo nome de usuário armazenado
                 const { data } = await api.get(`/user/${storedUsername}`);
                 const { username, email } = data;
@@ -27,9 +26,6 @@ const EditProfile = () => {
                 setEmail(email);
                 setPassword(''); // Mantém a senha em branco para segurança
                 setConfirmPassword(''); // Mantém a confirmação de senha em branco
-            } catch (error) {
-                console.error('Erro ao buscar os dados do usuário:', error);
-            }
         };
 
         // Buscar dados apenas se o nome de usuário estiver definido
@@ -69,7 +65,6 @@ const EditProfile = () => {
                 setTimeout(() => navigate('/home'), 2000); // Redireciona para home após 2 segundos
             }
         } catch (error) {
-            console.error('Erro ao salvar as informações:', error);
             toast.error('Erro ao salvar as informações. Tente novamente.');
         }
     };

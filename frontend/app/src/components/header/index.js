@@ -1,61 +1,75 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
-import { useLocation } from "react-router-dom";
-import './header.css';
-import SearchIcon from '@mui/icons-material/Search';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import api from '../../services/api'; // Certifique-se de importar o 'api'
+import React, { useEffect, useState, useCallback } from "react";
+import { Link, useNavigate } from 'react-router-dom'; // Importa Link e useNavigate para navegação
+import { useLocation } from "react-router-dom"; // Importa useLocation para obter informações sobre a URL atual
+import './header.css'; // Importa o arquivo de estilo CSS
+import SearchIcon from '@mui/icons-material/Search'; // Importa ícone de busca
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'; // Importa ícone de seta para baixo
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'; // Importa ícone de seta para cima
+import api from '../../services/api'; // Importa a instância da API para fazer requisições
 
-const Header = ({ black, onSearch }) => { // Adiciona a prop `onSearch`
-    const location = useLocation();
-    const [activePage, setActivePage] = useState('');
-    const [menuOpen, setMenuOpen] = useState(false);
+const Header = ({ black, onSearch, isSearching }) => { 
+    const location = useLocation(); // Obtém a localização atual
+    const [activePage, setActivePage] = useState(''); // Estado para armazenar a página ativa
+    const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar a abertura do menu do usuário
     const [searchTerm, setSearchTerm] = useState(''); // Estado para armazenar o valor da busca
-    const navigate = useNavigate();
+    const [timeoutId, setTimeoutId] = useState(null); // Estado para armazenar o ID do timeout
+    const navigate = useNavigate(); // Hook para navegação programática
 
     useEffect(() => {
+        // Atualiza a página ativa com base na localização atual
         setActivePage(location.pathname);
     }, [location]);
 
-    const toggleMenu = () => {
-        setMenuOpen(!menuOpen);
-    };
-
-    const handleLogout = () => {
-        localStorage.removeItem('authToken');
-        navigate('/login');
-    };
-
-   // Função de busca
-const handleSearch = async () => {
-    if (searchTerm.trim()) {
-        try {
+    // Função de busca com debounce
+    const handleSearch = useCallback(async (term) => {
+        if (term.trim()) {
             const response = await api.get(`/search/movies-and-tv-shows`, {
                 params: {
-                    query: searchTerm
+                    query: term
                 }
             });
 
-            // A estrutura dos dados deve ser adaptada com base no retorno do back-end
-            console.log(response.data);
-            
-            // Passa os resultados para o componente pai
-            // A estrutura dos dados é: response.data.movies e response.data.tvShows
+            // Passa os resultados de busca para o componente pai
             onSearch({
                 movies: response.data.movies,
                 tvShows: response.data.tvShows
             });
-
-        } catch (error) {
-            console.error('Erro ao buscar filmes e séries:', error);
         }
-    }
-};
+    }, [onSearch]);
 
+    useEffect(() => {
+        // Limpa o timeout anterior, se houver
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+
+        // Define um novo timeout para realizar a busca com atraso
+        const id = setTimeout(() => {
+            handleSearch(searchTerm);
+        }, 300); // 300ms de atraso após o usuário parar de digitar
+
+        setTimeoutId(id);
+
+        // Função de cleanup para limpar o timeout
+        return () => {
+            clearTimeout(id);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [searchTerm, handleSearch]); // Dependências: searchTerm e handleSearch
+
+    const toggleMenu = () => {
+        // Alterna a visibilidade do menu do usuário
+        setMenuOpen(!menuOpen);
+    };
+
+    const handleLogout = () => {
+        // Remove o token de autenticação e redireciona para a página de login
+        localStorage.removeItem('authToken');
+        navigate('/login');
+    };
 
     return (
-        <header className={black ? 'black' : ''}>
+        <header className={`${black ? 'black' : ''} ${isSearching ? 'search-active' : ''}`}>
             <div className="header-logo">
                 <img src="/images/logo-verzelflix.png" alt="verzelflix"/>
                 <div className="nav-menu">
@@ -83,14 +97,13 @@ const handleSearch = async () => {
             </div>
             <div className="header-search">
                 <div>
-                    <SearchIcon className="search-icon" onClick={handleSearch} />
+                    <SearchIcon className="search-icon" />
                 </div>
                 <input 
                     type="text" 
                     placeholder="Buscar" 
                     value={searchTerm} 
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // Chama a busca ao pressionar Enter
+                    onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o termo de busca
                 />
             </div>
             <div className="header-user">

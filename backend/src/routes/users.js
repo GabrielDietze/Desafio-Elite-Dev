@@ -11,7 +11,7 @@ router.post('/register', usersController.register);
 // Atualizar um usuário pelo nome de usuário
 router.put('/user/:username', usersController.updateUserByUsername);
 
-// Buscar um usuário pelo username2
+// Buscar um usuário pelo username
 router.get('/user/:username', usersController.getUserByUsername);
 
 // Apagar um usuário pelo e-mail

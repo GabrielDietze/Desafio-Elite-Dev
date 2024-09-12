@@ -3,7 +3,7 @@ const router = express.Router();
 const moviesController = require('../controllers/MoviesController');
 
 // Buscar filmes em cartaz
-router.get('/search/:query', moviesController.searchMovies);
+router.get('/search/:query', moviesController.searchMoviesAndTVShows);
 
 // Buscar filmes ou séries por categoria
 router.get('/discover/:mediaType', moviesController.discoverByCategory);

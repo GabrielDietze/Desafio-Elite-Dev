@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Crie uma instância do Axios com a URL base
 const api = axios.create({
-  baseURL: 'https://back-verzelflix-git-main-dietzes-projects.vercel.app/api',
+  baseURL: process.env.baseURL || 'http://localhost:5000',
 });
 
 // Adicione um interceptor para todas as requisições

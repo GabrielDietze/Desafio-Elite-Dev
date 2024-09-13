@@ -241,7 +241,4 @@ header.black {
     .header-logo img {
         display: none;
     }
-    .nav-menu ul li:first-child {
-        display: none; /* O primeiro li some */
-    }
 }

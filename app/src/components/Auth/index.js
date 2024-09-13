@@ -5,111 +5,109 @@ import api from '../../services/api'; // Importa a instância do axios para faze
 import { toast } from "react-toastify"; 
 
 const Login = () => {
-  // Hook useState para gerenciar o estado se o usuário está registrando ou logando
   const [isRegister, setIsRegister] = useState(false);
-
-  // Hook useState para armazenar os dados do formulário (nome de usuário, senha, e email)
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     email: ""
   });
+  const [loading, setLoading] = useState(false); // Estado para gerenciar a tela de carregamento
+  const navigate = useNavigate(); 
 
-  const navigate = useNavigate(); // Hook para facilitar a navegação entre páginas
-
-  // Função para lidar com mudanças nos campos do formulário
-  // Atualiza o estado de formData conforme o usuário digita
   const handleChange = (e) => {
-    const { name, value } = e.target; // Desestrutura o nome e valor do campo que foi modificado
+    const { name, value } = e.target;
     setFormData({
-      ...formData, // Mantém os outros valores que já estavam no estado
-      [name]: value // Atualiza o campo específico (username, password ou email)
+      ...formData,
+      [name]: value
     });
   };
 
-  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita o comportamento padrão do formulário, que é recarregar a página
+    e.preventDefault();
     
     try {
-      // Define o endpoint com base no estado de isRegister
-      // Se for registro, usa o endpoint '/register', senão usa '/login'
       const endpoint = isRegister ? '/register' : '/login';
-      
-      // Faz a requisição POST para o endpoint correspondente com os dados do formulário
       const response = await api.post(endpoint, formData);
-
-      // Se a resposta for de sucesso (status 200)
-      if (response.status === 200) {
+  
+      if (response.status === 200 || response.status === 201) {
         if (!isRegister) {
-          // Se for login, salva o token de autenticação no localStorage
+          // Se for login, salva os dados no localStorage
           localStorage.setItem('authToken', response.data.token);
-
-          // Salva o nome de usuário e o ID do usuário no localStorage
           localStorage.setItem('username', formData.username);
           localStorage.setItem('userId', response.data.userId);
+          
+          // Exibe a tela de carregamento antes de redirecionar
+          setLoading(true);
+          setTimeout(() => navigate('/home'), 2000);
+        } else {
+          // Se for registro, muda para o formulário de login
+          setIsRegister(false);
+          setFormData({ username: "", password: "", email: "" });
+          toast.success("Registro bem-sucedido! Agora você pode fazer login.");
         }
-
-        // Após login ou registro bem-sucedido, aguarda 2 segundos e navega para a página home
-        setTimeout(() => navigate('/home'), 2000);
       }
     } catch (error) {
       toast.error(error.response?.data?.msg || "Ocorreu um erro. Tente novamente.");
     }
   };
+  
 
   return (
     <div className="login-container">
-      {/* Container principal da tela de login */}
-      <div className="login-box">
-        {/* Exibe o logo da aplicação */}
-        <img src="/images/logo-verzelflix.png" alt="verzelflix" />
-        
-        {/* Formulário de login/registro */}
-        <form onSubmit={handleSubmit}>
-          {/* Campo para nome de usuário */}
-          <input
-            type="text"
-            name="username"
-            placeholder="Usuário"
-            value={formData.username} // Valor atrelado ao estado formData
-            onChange={handleChange} // Chama handleChange quando o usuário digita
-            required // Campo obrigatório
-          />
-
-          {/* Condicional: exibe o campo de email apenas se o usuário estiver se registrando */}
-          {isRegister && (
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email} // Valor atrelado ao estado formData
-              onChange={handleChange} // Chama handleChange quando o usuário digita
-              required // Campo obrigatório
-            />
-          )}
+      {loading ? (
+        <div className='loading'>
+          <img src="https://media1.tenor.com/m/UnFx-k_lSckAAAAC/amalie-steiness.gif" alt="Carregando" />
+        </div>
+      ) : (
+        <div className="login-box">
+          <img src="/images/logo-verzelflix.png" alt="verzelflix" />
           
-          {/* Campo para senha */}
-          <input
-            type="password"
-            name="password"
-            placeholder="Senha"
-            value={formData.password} // Valor atrelado ao estado formData
-            onChange={handleChange} // Chama handleChange quando o usuário digita
-            required // Campo obrigatório
-          />
-         
-          {/* Botão de submissão, o texto muda com base no estado (login ou registrar) */}
-          <button type="submit" className="submit-btn">
-            {isRegister ? "Registrar" : "Login"}
-          </button>
-        </form>
+          {/* Formulário de login/registro */}
+          <form onSubmit={handleSubmit}>
+            {/* Campo para nome de usuário */}
+            <input
+              type="text"
+              name="username"
+              placeholder="Usuário"
+              value={formData.username}
+              onChange={handleChange}
+              required
+            />
 
-        {/* Texto de alternância entre as opções de login e registro */}
-        <p onClick={() => setIsRegister(!isRegister)} className="toggle">
-          {isRegister ? "Já tem uma conta? Faça login" : "Novo por aqui? Registre-se agora"}
-        </p>
-      </div>
+            {/* Campo de email (apenas para registro) */}
+            {isRegister && (
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            )}
+            
+            {/* Campo para senha */}
+            <input
+              type="password"
+              name="password"
+              placeholder="Senha"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            
+            {/* Botão de envio do formulário */}
+            <button type="submit" className="submit-btn">
+              {isRegister ? "Registrar" : "Login"}
+            </button>
+          </form>
+
+          {/* Texto para alternar entre login e registro */}
+          <p onClick={() => setIsRegister(!isRegister)} className="toggle">
+            {isRegister ? "Já tem uma conta? Faça login" : "Novo por aqui? Registre-se agora"}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

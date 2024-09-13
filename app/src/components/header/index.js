@@ -68,6 +68,9 @@ const Header = ({ black, onSearch, isSearching }) => {
         navigate('/login');
     };
 
+    // Verifica se a rota atual está nas rotas em que o componente de pesquisa deve ser ocultado
+    const hideSearch = ['/favorites', '/favorites/shared', '/movie'].some(path => location.pathname.startsWith(path));
+
     return (
         <header className={`${black ? 'black' : ''} ${isSearching ? 'search-active' : ''}`}>
             <div className="header-logo">
@@ -95,17 +98,19 @@ const Header = ({ black, onSearch, isSearching }) => {
                     </ul>
                 </div>
             </div>
-            <div className="header-search">
-                <div>
-                    <SearchIcon className="search-icon" />
+            {!hideSearch && (
+                <div className="header-search">
+                    <div>
+                        <SearchIcon className="search-icon" />
+                    </div>
+                    <input 
+                        type="text" 
+                        placeholder="Buscar" 
+                        value={searchTerm} 
+                        onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o termo de busca
+                    />
                 </div>
-                <input 
-                    type="text" 
-                    placeholder="Buscar" 
-                    value={searchTerm} 
-                    onChange={(e) => setSearchTerm(e.target.value)} // Atualiza o termo de busca
-                />
-            </div>
+            )}
             <div className="header-user">
                 <img src="/images/user-icon.jpeg" alt="user" onClick={toggleMenu} />
                 <div className="user-menu-icon" onClick={toggleMenu}>

@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "/backend/src/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "/app/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/backend/src/server.js"
+    },
+    {
+      "src": "/static/(.*)",
+      "dest": "/app/build/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/app/build/$1"
+    }
+  ]
+}

@@ -3,18 +3,18 @@ const router = express.Router();
 const usersController = require('../controllers/UserController');
 
 // Login do usuário
-router.post('/login', usersController.login);
+router.post('/api/login', usersController.login);
 
 // Registrar um novo usuário
-router.post('/register', usersController.register);
+router.post('/api/register', usersController.register);
 
 // Atualizar um usuário pelo nome de usuário
-router.put('/user/:username', usersController.updateUserByUsername);
+router.put('/api/user/:username', usersController.updateUserByUsername);
 
 // Buscar um usuário pelo username
-router.get('/user/:username', usersController.getUserByUsername);
+router.get('/api/user/:username', usersController.getUserByUsername);
 
 // Apagar um usuário pelo e-mail
-router.delete('/user/:email', usersController.deleteUserByEmail);
+router.delete('/api/user/:email', usersController.deleteUserByEmail);
 
 module.exports = router;

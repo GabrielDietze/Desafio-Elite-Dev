@@ -1,7 +1,6 @@
 # VERZELFLIX 🎬
----
 Este projeto é uma aplicação web de Lista de Filmes que utiliza a API do The Movie Database (TMDb) e um desing inspirado na Netflix para fornecer informações sobre filmes e oferecer uma ótima experiência visual. Os usuários podem criar sua conta, pesquisar filmes, visualizar detalhes, adicionar filmes à lista de favoritos, e compartilhar a lista de favoritos com outros usuários.
----
+
 ## Deploy 🚀
 
 O projeto está disponível online e pode ser acessado através do seguinte link:
@@ -9,9 +8,9 @@ O projeto está disponível online e pode ser acessado através do seguinte link
 - **[Verzelflix - Aplicação de Lista de Filmes](https://verzelflix.vercel.app/home)**
 
 Sinta-se à vontade para visitar e explorar a aplicação em tempo real!
----
+
 # Principais Funcionalidades 🎯
----
+
 ## Funcionalidades
 
 ### 1. Registro e Autenticação de Conta
@@ -84,7 +83,7 @@ O Front-End é desenvolvido usando **React** e está organizado da seguinte form
 - **`src/index.js`**: O ponto de entrada principal da aplicação React, responsável por renderizar o componente `App` e conectar o React ao DOM.
 
 Esta estrutura de diretórios organiza o código de forma modular e facilita o desenvolvimento e a manutenção da aplicação.
----
+
 ## Tecnologias Utilizadas 🖥️
 
 O projeto utiliza uma combinação de tecnologias modernas para garantir uma aplicação robusta e eficiente. Abaixo está uma lista das principais tecnologias utilizadas:
@@ -157,35 +156,35 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    
 2. **Configuração do Back-End**
    
-  *Navegue até o diretório back-end:
-  
+  * Navegue até o diretório back-end:
+   
    cd backend
 
- *Instale as dependências do projeto:
+ * Instale as dependências do projeto:
 
   npm install
   
-  *O arquivo .env já está incluído no repositório para fins de teste. No entanto, para segurança e em um ambiente real, você deve criar seu próprio arquivo .env com as variáveis necessárias, como:
+ * O arquivo .env já está incluído no repositório para fins de teste. No entanto, para segurança e em um ambiente real, você deve criar seu próprio arquivo .env com as variáveis necessárias, como:
 
   MONGODB_URI=<sua_string_de_conexão_do_mongo>
   JWT_SECRET=<seu_segredo_de_token>
   TMDB_API_KEY=<sua_chave_de_api_do_tmdb>
 
-  *Inicie o servidor do Back-End. O servidor estará disponível em http://localhost:5000 e você pode usá-lo para testar as APIs usando ferramentas como o Postman:
+  * Inicie o servidor do Back-End. O servidor estará disponível em http://localhost:5000 e você pode usá-lo para testar as APIs usando ferramentas como o Postman:
 
   npm start
 
 3. **Configuração do Front-End**
-
-  *Navegue até o diretório front-end:
+   
+  * Navegue até o diretório front-end:
 
   cd app
-
-  *Instale as dependências do Front-End:
+  
+  * Instale as dependências do Front-End:
   
   npm install
 
-  *Inicie o servidor de desenvolvimento do Front-End:
+  * Inicie o servidor de desenvolvimento do Front-End:
 
   npm start
 
@@ -201,11 +200,11 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
   ### Back-end
   
-  *Instale as dependências de desenvolvimento (se ainda não o fez):
+  * Instale as dependências de desenvolvimento (se ainda não o fez):
   
   npm install --only=dev
 
-  *Execute os testes:
+  * Execute os testes:
 
   npm test
 

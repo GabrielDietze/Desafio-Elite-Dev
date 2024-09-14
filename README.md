@@ -158,11 +158,11 @@ Certifique-se de ter as seguintes ferramentas instaladas:
    
   * Navegue até o diretório back-end:
    
-   cd backend
+       cd backend
 
  * Instale as dependências do projeto:
 
-  npm install
+      npm install
   
  * O arquivo .env já está incluído no repositório para fins de teste. No entanto, para segurança e em um ambiente real, você deve criar seu próprio arquivo .env com as variáveis necessárias, como:
 
@@ -172,25 +172,25 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
   * Inicie o servidor do Back-End. O servidor estará disponível em http://localhost:5000 e você pode usá-lo para testar as APIs usando ferramentas como o Postman:
 
-  npm start
+      npm start
 
 3. **Configuração do Front-End**
    
   * Navegue até o diretório front-end:
 
-  cd app
+      cd app
   
   * Instale as dependências do Front-End:
   
-  npm install
+      npm install
 
   * Inicie o servidor de desenvolvimento do Front-End:
 
-  npm start
+      npm start
 
   O Front-End estará disponível em http://localhost:3000.
 
-  **Uso**
+ ## Uso
   
   Acesse a aplicação no seu navegador em http://localhost:3000.
   Crie uma conta, faça login, e comece a explorar as funcionalidades de pesquisa e gerenciamento de filmes.
@@ -202,11 +202,11 @@ Certifique-se de ter as seguintes ferramentas instaladas:
   
   * Instale as dependências de desenvolvimento (se ainda não o fez):
   
-  npm install --only=dev
+      npm install --only=dev
 
   * Execute os testes:
 
-  npm test
+      npm test
 
   Isso executará todos os testes unitários e de integração definidos no projeto.
 
@@ -214,7 +214,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
   *Nota: No momento, o projeto não inclui testes para o Front-End. Devido a restrições de tempo e foco na implementação das funcionalidades principais, os testes de Front-End não foram desenvolvidos nesta fase. No entanto, recomenda-se implementar testes de Front-End futuros para garantir a qualidade e a estabilidade da interface do usuário.*
   
-  **Contatos e Links 📬**
+ ## Contatos e Links 📬
   Para qualquer dúvida, suporte ou feedback, você pode entrar em contato comigo através dos seguintes canais:
 
   Email: gabrieldietze@gmail.com

@@ -1,5 +1,5 @@
 # VERZELFLIX 🎬
-Este projeto é uma aplicação web de Lista de Filmes que utiliza a API do The Movie Database (TMDb) e um desing inspirado na Netflix para fornecer informações sobre filmes e oferecer uma ótima experiência visual. Os usuários podem criar sua conta, pesquisar filmes, visualizar detalhes, adicionar filmes à lista de favoritos, e compartilhar a lista de favoritos com outros usuários.
+Este projeto é uma aplicação web de Lista de Filmes que utiliza a API do The Movie Database (TMDb, possui um desing inspirado na Netflix, para fornecer informações sobre filmes e oferecer uma ótima experiência visual. Os usuários podem criar sua conta, pesquisar filmes, visualizar detalhes, adicionar filmes à lista de favoritos, e compartilhar a lista de favoritos com outros usuários.
 
 ## Deploy 🚀
 
@@ -166,9 +166,9 @@ Certifique-se de ter as seguintes ferramentas instaladas:
   
  * O arquivo .env já está incluído no repositório para fins de teste. No entanto, para segurança e em um ambiente real, você deve criar seu próprio arquivo .env com as variáveis necessárias, como:
 
-  MONGODB_URI=<sua_string_de_conexão_do_mongo>
-  JWT_SECRET=<seu_segredo_de_token>
-  TMDB_API_KEY=<sua_chave_de_api_do_tmdb>
+  - MONGODB_URI=<sua_string_de_conexão_do_mongo>
+  - JWT_SECRET=<seu_segredo_de_token>
+  - TMDB_API_KEY=<sua_chave_de_api_do_tmdb>
 
   * Inicie o servidor do Back-End. O servidor estará disponível em http://localhost:5000 e você pode usá-lo para testar as APIs usando ferramentas como o Postman:
 
@@ -196,6 +196,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
   Crie uma conta, faça login, e comece a explorar as funcionalidades de pesquisa e gerenciamento de filmes.
 
  **Testes 🧪**
+
   Para garantir a qualidade e a estabilidade do código, o projeto inclui testes unitários e de integração. Siga as instruções abaixo para rodar os testes:
 
   ### Back-end
@@ -215,6 +216,7 @@ Certifique-se de ter as seguintes ferramentas instaladas:
   *Nota: No momento, o projeto não inclui testes para o Front-End. Devido a restrições de tempo e foco na implementação das funcionalidades principais, os testes de Front-End não foram desenvolvidos nesta fase. No entanto, recomenda-se implementar testes de Front-End futuros para garantir a qualidade e a estabilidade da interface do usuário.*
   
  ## Contatos e Links 📬
+
   Para qualquer dúvida, suporte ou feedback, você pode entrar em contato comigo através dos seguintes canais:
 
   Email: gabrieldietze@gmail.com

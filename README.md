@@ -1,5 +1,5 @@
 # VERZELFLIX 🎬
-Este projeto é uma aplicação web de Lista de Filmes que utiliza a API do The Movie Database (TMDb, possui um desing inspirado na Netflix, para fornecer informações sobre filmes e oferecer uma ótima experiência visual. Os usuários podem criar sua conta, pesquisar filmes, visualizar detalhes, adicionar filmes à lista de favoritos, e compartilhar a lista de favoritos com outros usuários.
+Este projeto é uma aplicação web de Lista de Filmes que utiliza a API do The Movie Database (TMDb), possui um desing inspirado na Netflix, para fornecer informações sobre filmes e uma ótima experiência visual. Os usuários podem criar sua conta, pesquisar filmes, visualizar detalhes, adicionar filmes à lista de favoritos, e compartilhar a lista de favoritos com outros usuários.
 
 ## Deploy 🚀
 

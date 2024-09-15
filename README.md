@@ -219,5 +219,5 @@ Certifique-se de ter as seguintes ferramentas instaladas:
 
   Para qualquer dúvida, suporte ou feedback, você pode entrar em contato comigo através dos seguintes canais:
 
-  Email: gabrieldietze@gmail.com
+  Email: gabrieldietzenovy@gmail.com
   LinkedIn: [Gabriel Dietze](https://www.linkedin.com/in/gabriel-dietze/)
